@@ -3,16 +3,19 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const Shopping = require("./models/shopping"); // موديلك
+const Shopping = require("./models/shopping"); // الموديل
 const app = express();
 
-// استخدم PORT من البيئة أو 5000 محليًا
-const port = process.env.PORT || 5000;
+// استخدام PORT من البيئة أو 3000 محليًا
+const PORT = process.env.PORT || 3000;
 
-// الاتصال بقاعدة البيانات
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/shoppingDB"
-)
+// الاتصال بقاعدة البيانات (Atlas)
+const MONGO_URI = process.env.MONGODB_URI || "mongodb+srv://Arafa:Arafa123@cluster0.zdjypgk.mongodb.net/3rafa_data?retryWrites=true&w=majority";
+
+mongoose.connect(MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
   .then(() => console.log("✅ MongoDB connected"))
   .catch(err => console.log("❌ MongoDB connection error:", err));
 
@@ -20,49 +23,36 @@ mongoose.connect(
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views"));
 
-// Middleware
+// ميدل وير
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
-app.get("/", async (req, res) => {
-  try {
-    const products = await Shopping.find();
-    res.render("index", { arr: products });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("حدث خطأ في السيرفر");
-  }
+app.get("/", (req, res) => {
+  Shopping.find()
+    .then(result => res.render("index", { arr: result }))
+    .catch(err => console.log(err));
 });
 
 app.get("/products", (req, res) => {
   res.render("products");
 });
 
-app.post("/user/add", async (req, res) => {
-  try {
-    await Shopping.create(req.body);
-    res.redirect("/");
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("حدث خطأ أثناء إضافة المنتج");
-  }
+app.post("/user/add", (req, res) => {
+  Shopping.create(req.body)
+    .then(() => res.redirect("/"))
+    .catch(err => console.log(err));
 });
 
-app.get("/user/:id", async (req, res) => {
-  try {
-    const product = await Shopping.findById(req.params.id);
-    if (!product) return res.status(404).send("المنتج غير موجود");
-    res.render("user/view", { obj: product });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("حدث خطأ في السيرفر");
-  }
+app.get("/user/:id", (req, res) => {
+  Shopping.findById(req.params.id)
+    .then(result => res.render("user/view", { obj: result }))
+    .catch(err => console.log(err));
 });
 
 // تشغيل السيرفر
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
 
 module.exports = app;
