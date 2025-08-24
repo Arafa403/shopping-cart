@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{obj.productName}}</title>
+</head>
+
+<body>
+    <h1>{{obj.productName}}</h1>
+    <img src="{{obj.images.[0]}}" alt="{{obj.productName}}" width="400">
+    <p>{{obj.descriptions.[0]}}</p>
+    {{#if obj.videoPath}}
+    <a href="{{obj.videoPath}}" target="_blank">شاهد الفيديو</a>
+    {{/if}}
+    <br><br>
+    <a href="/">العودة للصفحة الرئيسية</a>
+</body>
+
+</html>

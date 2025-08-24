@@ -1,0 +1,17 @@
+.card-body {
+  margin-bottom: -33px;
+}
+
+.btn-btn-primary {
+  margin-bottom: 70px;
+}
+
+.card h4 {
+  font-weight: bold;
+  font-size: 30px;
+  padding-top: 16px;
+}
+
+.row {
+  padding-top: 20px;
+}

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <!-- Favicon -->
+    <link rel="icon" href="/images/WhatsApp Image 2025-08-24 at 6.59.04 PM.jpeg" type="image/x-icon">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Darwish_Sports</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            margin: 0;
+            padding: 0;
+            background-color: #eef2f3;
+        }
+
+        header {
+            background-color: #2c7a2c;
+            color: white;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .banner {
+            background-image: url('images/banner.jpg');
+            /* ضع هنا رابط الصورة */
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .banner::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .banner-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .banner-content button {
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .banner-content button:hover {
+            background-color: #367636;
+            transform: scale(1.05);
+        }
+
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 40px 5%;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card h3 {
+            color: #2c7a2c;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+
+        .product-card img:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .product-card button {
+            background-color: #2c7a2c;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .product-card button:hover {
+            background-color: #1f4f1f;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: #2c7a2c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 992px) {
+            .products-container {
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                padding: 30px 5%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .products-container {
+                grid-template-columns: 1fr;
+                padding: 20px 5%;
+            }
+
+            .banner-content h2 {
+                font-size: 28px;
+            }
+
+            .banner-content button {
+                font-size: 16px;
+            }
+        }
+
+        .videos {
+            padding: 40px 5%;
+            background-color: #f5f5f5;
+        }
+
+        .videos h2 {
+            text-align: center;
+            color: #2c7a2c;
+            margin-bottom: 30px;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .video-container {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            /* يأخذ كامل عرض العمود */
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .video-container p {
+            margin-top: 10px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        /* استجابة للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Darwish_Sports</h1>
+        <nav>
+            <a href="http://localhost:3000/">الرئيسية</a>
+            <a href="/products">منتجاتنا</a>
+        </nav>
+    </header>
+
+
+
+    <section class="products-container" id="products">
+        <div class="product-card">
+            <h3>نجيله صناعية فاخرة</h3>
+            <img src="images/WhatsApp Image 2025-08-23 at 2.45.24 PM.jpeg" alt="نجيله صناعية">
+            <p>نجيلة صناعية شكلها طبيعي وتعيش معك سنين. سهلة الصيانة ولا تحتاج ري.</p>
+        </div>
+
+        <div class="product-card">
+            <h3>نجيله صناعيه عملية وحديثة</h3>
+            <img src="images/WhatsApp Image 2025-08-23 at 2.45.31 PM (1).jpeg" alt="نجيله صناعية">
+            <p>نجيلة صناعية عملية وحديثة، مثالية للملاعب والحدائق.</p>
+        </div>
+
+        <div class="product-card">
+            <h3>نجيله صناعيه عالية الجودة</h3>
+            <img src="images/WhatsApp Image 2025-08-23 at 2.45.31 PM.jpeg" alt="نجيله صناعية">
+            <p>لأرضيات رائعة خضراء تدوم. جودة عالية وسهلة التركيب.</p>
+        </div>
+
+        <div class="product-card">
+            <h3>نجيله صناعيه منخفضة</h3>
+            <img src="images/WhatsApp Image 2025-08-23 at 2.45.32 PM.jpeg" alt="نجيله صناعية">
+            <p>حافظ على مساحاتك الخضراء طوال السنة بأقل مجهود.</p>
+        </div>
+
+        <div class="product-card">
+            <h3>نجيله صناعيه عاليه الجوده </h3>
+            <img src="/images/WhatsApp Image 2025-08-23 at 2.46.36 PM (1).jpeg" alt="نجيله صناعية">
+            <p>اجعل حديقتك أو شرفتك مكانًا ينبض بالحياة! نجيلة صناعية طبيعية الشكل، سهلة التركيب وتدوم لسنوات.</p>
+        </div>
+
+        <div class="product-card">
+            <h3>نجيله صناعيه مميزه </h3>
+            <img src="/images/WhatsApp Image 2025-08-23 at 2.46.36 PM (2).jpeg" alt="نجيله صناعية">
+            <p>استمتع بمساحة خضراء رائعة بدون ري أو قص مستمر.</p>
+        </div>
+
+
+
+        <div class="product-card">
+            <h3>نجيله صناعيه خرافيه </h3>
+            <img src="/images/WhatsApp Image 2025-08-23 at 2.46.36 PM.jpeg" alt="نجيله صناعية">
+            <p>تصميم طبيعي وألوان جذابة تدوم طويلاً.</p>
+        </div>
+
+
+
+
+        <div class="product-card">
+            <h3>نجيله صناعيه جوده عاليه </h3>
+            <img src="/images/WhatsApp Image 2025-08-24 at 2.44.24 PM.jpeg" alt="نجيله صناعية">
+            <p>راحة وعناية أقل، جمال أكثر.</p>
+        </div>
+
+
+
+
+        <div class="product-card">
+            <h3>نجيله صناعيه عمليه وحديثه </h3>
+            <img src="images/WhatsApp Image 2025-08-23 at 2.45.24 PM (1).jpeg" alt="نجيله صناعية">
+            <p>لحديقتك أو ملعبك… نجيلة مثالية لكل مكان.</p>
+        </div>
+
+
+
+        <div class="product-card">
+            <h3>نجيله صيانة منخفضة</h3>
+            <img src="/images/WhatsApp Image 2025-08-23 at 2.45.31 PM (2).jpeg" alt="نجيله صناعية">
+            <p>صديقة للبيئة وسهلة الصيانة.</p>
+        </div>
+
+
+
+        <div class="product-card">
+            <h3>نجيله صناعيه خياليه </h3>
+            <img src="/images/WhatsApp Image 2025-08-23 at 2.45.19 PM.jpeg" alt="نجيله صناعية">
+            <p>نجيلتنا من اجمل و ارخص النجيله اللى فى السوق</p>
+        </div>
+
+
+
+        <div class="product-card">
+            <h3>نجيله صناعيه من اعلى الخامات </h3>
+            <img src="/images/WhatsApp Image 2025-08-23 at 2.45.19 PM (1).jpeg" alt="نجيله صناعية">
+            <p>جيلة صناعية صديقة للبيئة وسهلة الصيانة.</p>
+        </div>
+
+
+    </section>
+
+
+
+    <!-- قسم الفيديوهات -->
+    <section class="videos" id="videos">
+        <h2>فيديوهات تركيب النجيله</h2>
+        <div class="videos-grid">
+            <div class="video-container">
+                <video controls>
+                    <source src="/images/WhatsApp Video 2025-08-23 at 2.59.53 PM.mp4" type="video/mp4">
+                    المتصفح الخاص بك لا يدعم الفيديو.
+                </video>
+                <p>شاهد كيفية تركيب النجيله الصناعية بسهولة.</p>
+            </div>
+
+            <div class="video-container">
+                <video controls>
+                    <source src="/images/WhatsApp Video 2025-08-23 at 2.59.53 PM (1).mp4" type="video/mp4">
+                    المتصفح الخاص بك لا يدعم الفيديو.
+                </video>
+                <p>فيديو بعد ما انتهينا من التركيب.</p>
+            </div>
+
+            <div class="video-container">
+                <video controls>
+                    <source src="/images/WhatsApp Video 2025-08-23 at 2.59.52 PM.mp4" type="video/mp4">
+                    المتصفح الخاص بك لا يدعم الفيديو.
+                </video>
+                <p>شاهد الفيديو النهائي.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- قسم دعوة العميل CTA -->
+    <section
+        style="background-color:#e8f5e9; text-align:center; padding:40px 20px; margin:30px 5%; border-radius:12px;">
+        <h2 style="color:#2c7a2c; font-size:28px; margin-bottom:15px;">
+            <i class="fas fa-check-circle" style="color:#f0a500; margin-left:10px;"></i>
+            نجيلتنا متميزة وجودتها عالية!
+        </h2>
+        <p style="font-size:18px; color:#555; margin-bottom:20px;">
+            احصل على أفضل نجيلة صناعية طبيعية الشكل، سهلة التركيب، تدوم لسنوات وتضفي لمسة خضراء رائعة على حديقتك أو
+            شرفتك.
+        </p>
+        <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+            <a href="tel:+20103288718"
+                style="display:inline-flex; align-items:center; gap:8px; padding:12px 25px; background-color:#f0a500; color:#333; border-radius:8px; text-decoration:none; font-weight:bold;">
+                <i class="fas fa-phone"></i> اتصل الآن
+            </a>
+            <a href="https://wa.me/201032888718" target="_blank"
+                style="display:inline-flex; align-items:center; gap:8px; padding:12px 25px; background-color:#25D366; color:white; border-radius:8px; text-decoration:none; font-weight:bold;">
+                <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
+            </a>
+        </div>
+    </section>
+
+
+
+    <!-- ربط Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <footer style="background-color:#2c7a2c; color:white; text-align:center; padding:15px;">
+        &copy; 2025 جميع الحقوق محفوظة لهذا الموقع | تواصل معنا:
+
+        <span style="margin-left: 15px; display:inline-flex; gap:15px; align-items:center;">
+
+            <!-- فيسبوك -->
+            <a href="https://www.facebook.com/profile.php?id=100089491849088&mibextid=ZbWKwL" target="_blank"
+                style="color:white; text-decoration:none; font-size:22px;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+
+            <!-- واتساب -->
+            <a href="https://wa.me/201115690213" target="_blank"
+                style="color:white; text-decoration:none; font-size:22px;">
+                <i class="fab fa-whatsapp"></i> واتساب
+            </a>
+
+            <!-- هاتف -->
+            <a href="tel:+201115690213" style="color:white; text-decoration:none; font-size:22px;">
+                <i class="fas fa-phone"></i> اتصل الآن
+            </a>
+
+
+        </span>
+    </footer>
+
+
+</body>
+
+</html>
